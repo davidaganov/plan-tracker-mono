@@ -1,0 +1,205 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "close": "Close",
+    "apply": "Apply",
+    "change": "Change",
+    "actions": {
+      "open": "Open",
+      "send": "Send",
+      "create": "Create",
+      "inviteLink": "Invite",
+      "cancel": "Cancel",
+      "add": "Add",
+      "select": "Select",
+      "delete": "Delete",
+      "selectAll": "Select All",
+      "clearAll": "Clear All",
+      "edit": "Edit",
+      "search": "Search",
+      "save": "Save",
+      "undo": "Undo",
+      "clearFilters": "Clear Filters"
+    },
+    "languages": {
+      "en": "English",
+      "ru": "Russian"
+    },
+    "messages": {
+      "deleted": "Deleted: {count}",
+      "noFilterResults": "No results match your filters"
+    },
+    "scopes": {
+      "family": "Family",
+      "personal": "Personal"
+    },
+    "lists": {
+      "all": "All lists",
+      "create": {
+        "title": "Create List",
+        "namePlaceholder": "List name",
+        "submit": "Create"
+      },
+      "details": {
+        "addItem": "Add Item",
+        "addTemplate": "Add from Template",
+        "empty": "List is empty",
+        "items": "Items ({count})"
+      },
+      "templates": {
+        "selectTitle": "Select Templates",
+        "apply": "Apply Templates",
+        "noTemplates": "No templates available",
+        "templateEmpty": "Template is empty"
+      }
+    },
+    "errors": {
+      "loadFailed": "Failed to load data",
+      "loadListsFailed": "Failed to load lists",
+      "loadProductsFailed": "Failed to load products",
+      "loadTemplatesFailed": "Failed to load templates",
+      "loadLocationsFailed": "Failed to load locations"
+    },
+    "fields": {
+      "note": "Note",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "priceType": "Price Type",
+      "currency": "Currency",
+      "price": "Price",
+      "minPrice": "Min Price",
+      "maxPrice": "Max Price"
+    },
+    "units": {
+      "pcs": "pcs",
+      "kg": "kg",
+      "g": "g",
+      "l": "l",
+      "ml": "ml"
+    },
+    "unitFullNames": {
+      "pcs": "piece | pieces",
+      "kg": "kilogram | kilograms",
+      "g": "gram | grams",
+      "l": "liter | liters",
+      "ml": "milliliter | milliliters"
+    },
+    "priceTypes": {
+      "none": "None",
+      "exact": "Exact",
+      "range": "Range"
+    },
+    "sort": {
+      "label": "Sort",
+      "priceAsc": "Price ↑",
+      "priceDesc": "Price ↓"
+    },
+    "multiSelect": {
+      "placeholder": "Select options...",
+      "selectedCount": "{count} selected",
+      "empty": "No options found."
+    }
+  },
+  "units": {
+    "items": "{count} items",
+    "tasks": "{count} tasks",
+    "members": "{count} members"
+  },
+  "roles": {
+    "admin": "Admin",
+    "reader": "Reader"
+  },
+  "nav": {
+    "products": "Products",
+    "tasks": "Tasks",
+    "family": "Family",
+    "settings": "Settings"
+  },
+  "pages": {
+    "products": {
+      "searchItems": "Search items",
+      "tabs": {
+        "lists": "Lists",
+        "catalog": "Catalog",
+        "templates": "Templates",
+        "locations": "Locations"
+      },
+      "items": {
+        "catalog_empty": "No items in catalog",
+        "templates_empty": "No templates",
+        "locations_empty": "No locations",
+        "lists_empty": "No lists",
+        "priceSet": "Price set",
+        "itemsCount": "items"
+      },
+      "create": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Product name",
+        "locationLabel": "Location",
+        "locationPlaceholder": "Location name",
+        "priceLabel": "Price",
+        "priceExact": "Exact",
+        "priceRange": "Range",
+        "priceFromPlaceholder": "From",
+        "priceToPlaceholder": "To",
+        "pricePlaceholder": "Price of the product",
+        "submit": "Create Product",
+        "templateName": "Template name",
+        "selectProducts": "Products",
+        "searchProducts": "Search products",
+        "tagsLabel": "Tags",
+        "tagsPlaceholder": "Add tags",
+        "filterByTags": "Filter by tags",
+        "quantityRegulated": "Regulated",
+        "quantityUnregulated": "Unregulated"
+      },
+      "filter": {
+        "tags": "Tags",
+        "locations": "Locations"
+      },
+      "templateDetails": "Template",
+      "productsInTemplate": "Products ({count})",
+      "noProductsInTemplate": "No products in template",
+      "addProduct": "Add Product",
+      "newProduct": "New Product",
+      "backToTemplates": "Back to templates"
+    },
+    "tasks": {
+      "searchTasks": "Search tasks"
+    },
+    "family": {
+      "yourFamilies": "Your families"
+    },
+    "settings": {
+      "theme": "Theme",
+      "themeAuto": "Auto",
+      "themeLight": "Light",
+      "themeDark": "Dark",
+      "accentColor": "Accent color",
+      "accentChoose": "Choose accent",
+      "accentCustom": "Custom color",
+      "accentBlue": "Blue",
+      "accentViolet": "Violet",
+      "accentCyan": "Cyan",
+      "accentGreen": "Green",
+      "accentLime": "Lime",
+      "accentYellow": "Yellow",
+      "accentOrange": "Orange",
+      "accentRed": "Red",
+      "accentPink": "Pink",
+      "accentIndigo": "Indigo",
+      "currency": "Currency",
+      "language": "Language",
+      "authRequired": "Open the app from Telegram to save settings."
+    }
+  },
+  "ui": {
+    "tabs": {
+      "ariaLabel": "Tabs"
+    },
+    "command": {
+      "paletteTitle": "Command Palette",
+      "paletteSearch": "Search for a command to run..."
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "localeFormat": "short",
+  "locales": ["EN", "RU"],
+  "defaultLocale": "EN",
+  "localesDir": "src/lang",
+  "envFile": ".env",
+  "envVarName": "VITE_POLYGLOT_API_KEY"
+}

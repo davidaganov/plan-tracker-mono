@@ -1,0 +1,1 @@
+export type { AddTemplateItemsDto, CreateTemplateDto, SetTemplateSharingDto, ShareTemplateDto, TemplateDto, TemplateItemDto, TemplatesSelectResponse, UpdateTemplateDto, UpdateTemplateItemDto } from "../../templates/interfaces/templates.interface.js";

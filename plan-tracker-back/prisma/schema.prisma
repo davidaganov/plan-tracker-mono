@@ -1,0 +1,314 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id              String         @id @default(cuid())
+  telegramId      String         @unique
+  firstName       String?
+  lastName        String?
+  username        String?
+  languageCode    String?
+  photoUrl        String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  createdFamilies Family[]       @relation("FamilyCreatedBy")
+  usedInvites     FamilyInvite[] @relation("InviteUsedBy")
+  createdInvites  FamilyInvite[] @relation("InviteCreatedBy")
+  families        FamilyMember[]
+  ownedLists      List[]
+  locations       Location[]
+  products        Product[]
+  templates       Template[]
+  settings        UserSettings?
+}
+
+model UserSettings {
+  userId           String   @id
+  themeMode        String
+  primary          String
+  locale           String
+  currency         String
+  favoriteFamilyId String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  favoriteFamily   Family?  @relation("FavoriteFamily", fields: [favoriteFamilyId], references: [id])
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Family {
+  id                String                @id @default(cuid())
+  name              String
+  createdById       String
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  createdBy         User                  @relation("FamilyCreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+  invites           FamilyInvite[]
+  members           FamilyMember[]
+  listShares        ListFamilyShare[]
+  locationShares    LocationFamilyShare[]
+  productShares     ProductFamilyShare[]
+  templateShares    TemplateFamilyShare[]
+  favoredBySettings UserSettings[]        @relation("FavoriteFamily")
+}
+
+model FamilyMember {
+  familyId  String
+  userId    String
+  role      FAMILY_ROLE
+  createdAt DateTime    @default(now())
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  family    Family      @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@id([familyId, userId])
+  @@index([userId])
+}
+
+model FamilyInvite {
+  id          String    @id @default(cuid())
+  familyId    String
+  token       String    @unique
+  createdById String
+  usedById    String?
+  usedAt      DateTime?
+  createdAt   DateTime  @default(now())
+  usedBy      User?     @relation("InviteUsedBy", fields: [usedById], references: [id])
+  family      Family    @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  createdBy   User      @relation("InviteCreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([familyId])
+}
+
+model List {
+  id               String             @id @default(cuid())
+  type             LIST_TYPE
+  name             String
+  icon             String?
+  color            String?
+  note             String?
+  tags             Json?
+  sortMode         LIST_SORT_MODE     @default(createdAt)
+  groupByLocations Boolean            @default(false)
+  ownerId          String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  owner            User               @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  familyShares     ListFamilyShare[]
+  shoppingItems    ShoppingListItem[]
+  taskItems        TaskListItem[]
+  sortIndex        Int                @default(0)
+
+  @@index([ownerId])
+  @@index([type])
+}
+
+model ListFamilyShare {
+  listId    String
+  familyId  String
+  createdAt DateTime @default(now())
+  family    Family   @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  list      List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@id([listId, familyId])
+  @@index([familyId])
+}
+
+model Location {
+  id              String                   @id @default(cuid())
+  title           String
+  normalizedKey   String
+  note            String?
+  ownerId         String
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  owner           User                     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  shares          LocationFamilyShare[]
+  productDefaults ProductDefaultLocation[]
+  itemLocations   ShoppingItemLocation[]
+  sortIndex       Int                      @default(0)
+
+  @@index([ownerId])
+  @@index([normalizedKey])
+}
+
+model LocationFamilyShare {
+  familyId   String
+  locationId String
+  createdAt  DateTime @default(now())
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  family     Family   @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@id([familyId, locationId])
+  @@index([locationId])
+}
+
+model Product {
+  id                   String                   @id @default(cuid())
+  title                String
+  normalizedKey        String
+  note                 String?
+  defaultPriceType     ItemPriceType            @default(none)
+  defaultPriceCurrency String?
+  defaultPriceMin      Int?
+  defaultPriceMax      Int?
+  quantityUnit         String?
+  ownerId              String
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  owner                User                     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  defaultLocations     ProductDefaultLocation[]
+  shares               ProductFamilyShare[]
+  shoppingItems        ShoppingListItem[]
+  templateItems        TemplateItem[]
+  sortIndex            Int                      @default(0)
+
+  @@index([ownerId])
+  @@index([normalizedKey])
+}
+
+model ProductDefaultLocation {
+  productId  String
+  locationId String
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([productId, locationId])
+  @@index([locationId])
+}
+
+model ProductFamilyShare {
+  familyId  String
+  productId String
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  family    Family   @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@id([familyId, productId])
+  @@index([productId])
+}
+
+model Template {
+  id            String                @id @default(cuid())
+  title         String
+  normalizedKey String
+  note          String?
+  tags          Json
+  ownerId       String
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  owner         User                  @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  shares        TemplateFamilyShare[]
+  items         TemplateItem[]
+  sortIndex     Int                   @default(0)
+
+  @@index([ownerId])
+  @@index([normalizedKey])
+}
+
+model TemplateItem {
+  id            String        @id @default(cuid())
+  templateId    String
+  sortIndex     Int
+  productId     String?
+  title         String
+  quantity      Int           @default(1)
+  priceType     ItemPriceType @default(none)
+  priceCurrency String?
+  priceMin      Int?
+  priceMax      Int?
+  template      Template      @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  product       Product?      @relation(fields: [productId], references: [id])
+
+  @@index([templateId])
+  @@index([productId])
+}
+
+model TemplateFamilyShare {
+  familyId   String
+  templateId String
+  createdAt  DateTime @default(now())
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  family     Family   @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@id([familyId, templateId])
+  @@index([templateId])
+}
+
+model ShoppingListItem {
+  id              String                 @id @default(cuid())
+  listId          String
+  title           String
+  normalizedKey   String
+  isChecked       Boolean                @default(false)
+  checkedAt       DateTime?
+  repeatEveryDays Int?
+  quantity        Int                    @default(1)
+  productId       String?
+  priceType       ItemPriceType          @default(none)
+  priceCurrency   String?
+  priceMin        Int?
+  priceMax        Int?
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  sortIndex       Int
+  locations       ShoppingItemLocation[]
+  list            List                   @relation(fields: [listId], references: [id], onDelete: Cascade)
+  product         Product?               @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([listId])
+  @@index([productId])
+  @@index([normalizedKey])
+}
+
+model ShoppingItemLocation {
+  itemId     String
+  locationId String
+  location   Location         @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  item       ShoppingListItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@id([itemId, locationId])
+  @@index([locationId])
+}
+
+model TaskListItem {
+  id              String    @id @default(cuid())
+  listId          String
+  title           String
+  normalizedKey   String
+  isChecked       Boolean   @default(false)
+  checkedAt       DateTime?
+  repeatEveryDays Int?
+  durationMinutes Int?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  sortIndex       Int
+  list            List      @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@index([listId])
+  @@index([normalizedKey])
+}
+
+enum FAMILY_ROLE {
+  admin
+  reader
+}
+
+enum LIST_TYPE {
+  shopping
+  tasks
+}
+
+enum LIST_SORT_MODE {
+  createdAt
+  manual
+}
+
+enum ItemPriceType {
+  none
+  exact
+  range
+}

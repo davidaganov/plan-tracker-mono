@@ -1,0 +1,7 @@
+echo "Running backend pre-push checks..."
+
+npm run lint || exit 1
+npm run format:check || exit 1
+npm run type-check || exit 1
+
+echo "Backend checks passed!"

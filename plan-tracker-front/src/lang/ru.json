@@ -1,0 +1,205 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "close": "Закрыть",
+    "apply": "Применить",
+    "change": "Изменить",
+    "actions": {
+      "open": "Открыть",
+      "send": "Отправить",
+      "create": "Создать",
+      "inviteLink": "Пригласить",
+      "cancel": "Отменить",
+      "add": "Добавить",
+      "select": "Выбрать",
+      "delete": "Удалить",
+      "selectAll": "Выбрать все",
+      "clearAll": "Очистить все",
+      "edit": "Редактировать",
+      "search": "Поиск",
+      "save": "Сохранить",
+      "undo": "Отменить",
+      "clearFilters": "Очистить фильтры"
+    },
+    "languages": {
+      "en": "Английский",
+      "ru": "Русский"
+    },
+    "messages": {
+      "deleted": "Удалено: {count}",
+      "noFilterResults": "Нет результатов, соответствующих вашим фильтрам"
+    },
+    "scopes": {
+      "family": "Семья",
+      "personal": "Личное"
+    },
+    "lists": {
+      "all": "Все списки",
+      "create": {
+        "title": "Создать список",
+        "namePlaceholder": "Название списка",
+        "submit": "Создать"
+      },
+      "details": {
+        "addItem": "Добавить позицию",
+        "addTemplate": "Добавить из шаблона",
+        "empty": "Список пуст",
+        "items": "Позиций ({count})"
+      },
+      "templates": {
+        "selectTitle": "Выбрать шаблоны",
+        "apply": "Применить шаблоны",
+        "noTemplates": "Нет доступных шаблонов",
+        "templateEmpty": "Шаблон пуст"
+      }
+    },
+    "errors": {
+      "loadFailed": "Не удалось загрузить данные",
+      "loadListsFailed": "Не удалось загрузить списки",
+      "loadProductsFailed": "Не удалось загрузить продукты",
+      "loadTemplatesFailed": "Не удалось загрузить шаблоны",
+      "loadLocationsFailed": "Не удалось загрузить локации"
+    },
+    "fields": {
+      "note": "Примечание",
+      "quantity": "Количество",
+      "unit": "Единица измерения",
+      "priceType": "Тип цены",
+      "currency": "Валюта",
+      "price": "Цена",
+      "minPrice": "Минимальная цена",
+      "maxPrice": "Максимальная цена"
+    },
+    "units": {
+      "pcs": "шт",
+      "kg": "кг",
+      "g": "г",
+      "l": "л",
+      "ml": "мл"
+    },
+    "unitFullNames": {
+      "pcs": "штук | штука | штуки | штук",
+      "kg": "килограммов | килограмм | килограмма | килограммов",
+      "g": "граммов | грамм | грамма | граммов",
+      "l": "литров | литр | литра | литров",
+      "ml": "миллилитров | миллилитр | миллилитра | миллилитров"
+    },
+    "priceTypes": {
+      "none": "Нет",
+      "exact": "Точная",
+      "range": "Диапазон"
+    },
+    "sort": {
+      "label": "Сортировка",
+      "priceAsc": "Цена ↑",
+      "priceDesc": "Цена ↓"
+    },
+    "multiSelect": {
+      "placeholder": "Выберите варианты...",
+      "selectedCount": "{count} выбрано",
+      "empty": "Варианты не найдены."
+    }
+  },
+  "units": {
+    "items": "{count} позиций",
+    "tasks": "{count} задач",
+    "members": "{count} участников"
+  },
+  "roles": {
+    "admin": "Администратор",
+    "reader": "Читатель"
+  },
+  "nav": {
+    "products": "Продукты",
+    "tasks": "Задачи",
+    "family": "Семья",
+    "settings": "Настройки"
+  },
+  "pages": {
+    "products": {
+      "searchItems": "Поиск позиций",
+      "tabs": {
+        "lists": "Списки",
+        "catalog": "Каталог",
+        "templates": "Шаблоны",
+        "locations": "Локации"
+      },
+      "items": {
+        "catalog_empty": "В каталоге нет позиций",
+        "templates_empty": "Нет шаблонов",
+        "locations_empty": "Нет локаций",
+        "lists_empty": "Нет списков",
+        "priceSet": "Цена установлена",
+        "itemsCount": "позиций"
+      },
+      "create": {
+        "nameLabel": "Название",
+        "namePlaceholder": "Название продукта",
+        "locationLabel": "Локация",
+        "locationPlaceholder": "Название локации",
+        "priceLabel": "Цена",
+        "priceExact": "Точная",
+        "priceRange": "Диапазон",
+        "priceFromPlaceholder": "От",
+        "priceToPlaceholder": "До",
+        "pricePlaceholder": "Цена продукта",
+        "submit": "Создать продукт",
+        "templateName": "Название шаблона",
+        "selectProducts": "Продукты",
+        "searchProducts": "Поиск продуктов",
+        "tagsLabel": "Теги",
+        "tagsPlaceholder": "Добавить теги",
+        "filterByTags": "Фильтр по тегам",
+        "quantityRegulated": "Регулируемое",
+        "quantityUnregulated": "Нерегулируемое"
+      },
+      "filter": {
+        "tags": "Теги",
+        "locations": "Локации"
+      },
+      "templateDetails": "Шаблон",
+      "productsInTemplate": "Продуктов ({count})",
+      "noProductsInTemplate": "В шаблоне нет продуктов",
+      "addProduct": "Добавить продукт",
+      "newProduct": "Новый продукт",
+      "backToTemplates": "Назад к шаблонам"
+    },
+    "tasks": {
+      "searchTasks": "Поиск задач"
+    },
+    "family": {
+      "yourFamilies": "Ваши семьи"
+    },
+    "settings": {
+      "theme": "Тема",
+      "themeAuto": "Авто",
+      "themeLight": "Светлая",
+      "themeDark": "Темная",
+      "accentColor": "Акцентный цвет",
+      "accentChoose": "Выбрать акцент",
+      "accentCustom": "Свой цвет",
+      "accentBlue": "Синий",
+      "accentViolet": "Фиолетовый",
+      "accentCyan": "Голубой",
+      "accentGreen": "Зеленый",
+      "accentLime": "Салатовый",
+      "accentYellow": "Желтый",
+      "accentOrange": "Оранжевый",
+      "accentRed": "Красный",
+      "accentPink": "Розовый",
+      "accentIndigo": "Индиго",
+      "currency": "Валюта",
+      "language": "Язык",
+      "authRequired": "Откройте приложение из Telegram, чтобы сохранить настройки."
+    }
+  },
+  "ui": {
+    "tabs": {
+      "ariaLabel": "Вкладки"
+    },
+    "command": {
+      "paletteTitle": "Палитра команд",
+      "paletteSearch": "Поиск команды для запуска..."
+    }
+  }
+}

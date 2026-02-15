@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  /* ── Radius ─────────────────────────────────────── */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* ── Core palette (bound to --app-* from variables.css) ── */
+  --color-background: var(--app-background);
+  --color-foreground: var(--app-foreground);
+
+  --color-card: var(--app-surface);
+  --color-card-foreground: var(--app-foreground);
+
+  --color-popover: var(--app-surface);
+  --color-popover-foreground: var(--app-foreground);
+
+  --color-primary: var(--app-primary);
+  --color-primary-foreground: var(--app-primary-foreground);
+
+  --color-secondary: var(--app-surface-2);
+  --color-secondary-foreground: var(--app-foreground);
+
+  --color-muted: var(--app-surface-2);
+  --color-muted-foreground: var(--app-muted);
+
+  --color-accent: var(--app-surface-2);
+  --color-accent-foreground: var(--app-foreground);
+
+  --color-destructive: oklch(0.577 0.245 27.325);
+
+  --color-border: var(--app-border);
+  --color-input: var(--app-border);
+  --color-ring: var(--app-primary);
+
+  /* ── Custom tokens ──────────────────────────────── */
+  --color-surface: var(--app-surface);
+  --color-surface-2: var(--app-surface-2);
+
+  /* ── Chart colors ───────────────────────────────── */
+  --color-chart-1: oklch(0.646 0.222 41.116);
+  --color-chart-2: oklch(0.6 0.118 184.704);
+  --color-chart-3: oklch(0.398 0.07 227.392);
+  --color-chart-4: oklch(0.828 0.189 84.429);
+  --color-chart-5: oklch(0.769 0.188 70.08);
+
+  /* ── Sidebar ────────────────────────────────────── */
+  --color-sidebar: var(--app-surface);
+  --color-sidebar-foreground: var(--app-foreground);
+  --color-sidebar-primary: var(--app-primary);
+  --color-sidebar-primary-foreground: var(--app-primary-foreground);
+  --color-sidebar-accent: var(--app-surface-2);
+  --color-sidebar-accent-foreground: var(--app-foreground);
+  --color-sidebar-border: var(--app-border);
+  --color-sidebar-ring: var(--app-primary);
+
+  /* ── Typography ─────────────────────────────────── */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
+
+  html {
+    font-size: 16.5px;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  .pt-badge {
+    @apply border-border bg-surface/40 text-muted-foreground inline-flex items-center rounded-full border px-2 py-1 text-[12px] shadow-[0_1px_0_rgba(255,255,255,0.06)];
+  }
+}
+
+@layer utilities {
+  .max-w-container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+}

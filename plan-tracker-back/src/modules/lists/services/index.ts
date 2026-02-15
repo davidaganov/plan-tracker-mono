@@ -1,0 +1,7 @@
+export { ListsAccessService } from "@/modules/lists/services/lists-access.service"
+export { ListsService } from "@/modules/lists/services/lists.service"
+export { ShoppingItemsService } from "@/modules/lists/services/shopping-items.service"
+export { TaskItemsService } from "@/modules/lists/services/task-items.service"
+export { SearchItemsService } from "@/modules/lists/services/search-items.service"
+export { SendListService } from "@/modules/lists/services/send-list.service"
+export { ShoppingListTemplateService } from "@/modules/lists/services/shopping-list-templates.service"

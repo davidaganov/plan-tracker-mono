@@ -1,0 +1,28 @@
+:root {
+  /* Fonts */
+  --font-main: "Arial", sans-serif;
+  --max-width: 768px;
+}
+
+html[data-theme="dark"],
+:root {
+  --app-background: #151b21;
+  --app-surface: #0f1b2d;
+  --app-surface-2: #13233a;
+  --app-foreground: #e7eefc;
+  --app-muted: #8ea0bf;
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-primary: #2ea6ff;
+  --app-primary-foreground: #ffffff;
+}
+
+html[data-theme="light"] {
+  --app-background: #f3f6fb;
+  --app-surface: #ffffff;
+  --app-surface-2: #f1f5ff;
+  --app-foreground: #0f172a;
+  --app-muted: #64748b;
+  --app-border: rgba(15, 23, 42, 0.1);
+  --app-primary: #2ea6ff;
+  --app-primary-foreground: #ffffff;
+}
