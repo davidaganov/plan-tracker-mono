@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "Running lint-staged for changed packages..."
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only)
+
+FRONTEND_CHANGED=false
+BACKEND_CHANGED=false
+TYPES_CHANGED=false
+
+if echo "$STAGED_FILES" | grep -q "^frontend/"; then
+  FRONTEND_CHANGED=true
+fi
+
+if echo "$STAGED_FILES" | grep -q "^backend/"; then
+  BACKEND_CHANGED=true
+fi
+
+if echo "$STAGED_FILES" | grep -q "^npm/plan-tracker-types/"; then
+  TYPES_CHANGED=true
+fi
+
+EXIT_CODE=0
+
+if [ "$FRONTEND_CHANGED" = true ]; then
+  echo "→ Running lint-staged in frontend..."
+  (cd frontend && npx lint-staged) || EXIT_CODE=1
+fi
+
+if [ "$BACKEND_CHANGED" = true ]; then
+  echo "→ Running lint-staged in backend..."
+  (cd backend && npx lint-staged) || EXIT_CODE=1
+fi
+
+if [ "$TYPES_CHANGED" = true ]; then
+  echo "→ Running lint-staged in npm/plan-tracker-types..."
+  (cd npm/plan-tracker-types && npx lint-staged) || EXIT_CODE=1
+fi
+
+if [ $EXIT_CODE -eq 0 ]; then
+  echo "✓ All lint-staged checks passed!"
+else
+  echo "✗ Some lint-staged checks failed"
+  exit 1
+fi
