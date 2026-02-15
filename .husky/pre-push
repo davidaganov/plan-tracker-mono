@@ -1,0 +1,56 @@
+#!/bin/bash
+
+echo "Running pre-push checks for changed packages..."
+
+# Get the list of changed files compared to origin
+git fetch origin --quiet
+CHANGED_FILES=$(git diff --name-only origin/main...HEAD 2>/dev/null || git diff --name-only HEAD^ HEAD)
+
+# Check if specific packages have changes
+FRONTEND_CHANGED=false
+BACKEND_CHANGED=false
+NPM_TYPES_CHANGED=false
+
+if echo "$CHANGED_FILES" | grep -q "^frontend/"; then
+  FRONTEND_CHANGED=true
+fi
+
+if echo "$CHANGED_FILES" | grep -q "^backend/"; then
+  BACKEND_CHANGED=true
+fi
+
+if echo "$CHANGED_FILES" | grep -q "^npm/plan-tracker-types/"; then
+  NPM_TYPES_CHANGED=true
+fi
+
+# Track exit codes
+EXIT_CODE=0
+
+# Run type-check for changed packages only
+if [ "$FRONTEND_CHANGED" = true ] || [ "$NPM_TYPES_CHANGED" = true ]; then
+  echo "→ Running type-check for frontend..."
+  npm run type-check:frontend || EXIT_CODE=1
+fi
+
+if [ "$BACKEND_CHANGED" = true ] || [ "$NPM_TYPES_CHANGED" = true ]; then
+  echo "→ Running type-check for backend..."
+  npm run type-check:backend || EXIT_CODE=1
+fi
+
+# Run tests for changed packages only
+if [ "$FRONTEND_CHANGED" = true ]; then
+  echo "→ Running tests for frontend..."
+  npm run test:frontend || EXIT_CODE=1
+fi
+
+if [ "$BACKEND_CHANGED" = true ]; then
+  echo "→ Running tests for backend..."
+  npm run test:backend || EXIT_CODE=1
+fi
+
+if [ $EXIT_CODE -eq 0 ]; then
+  echo "✓ All pre-push checks passed!"
+else
+  echo "✗ Some pre-push checks failed"
+  exit 1
+fi

@@ -19,9 +19,19 @@
     "format:check:frontend": "npm --prefix frontend run format:check",
     "install:all": "run-s install:backend install:frontend",
     "install:backend": "npm --prefix backend install",
-    "install:frontend": "npm --prefix frontend install"
+    "install:frontend": "npm --prefix frontend install",
+    "type-check": "run-s type-check:changed",
+    "type-check:all": "run-s type-check:backend type-check:frontend",
+    "type-check:backend": "npm --prefix backend run type-check",
+    "type-check:frontend": "npm --prefix frontend run type-check",
+    "test": "run-s test:changed",
+    "test:all": "run-s test:backend test:frontend",
+    "test:backend": "npm --prefix backend run test",
+    "test:frontend": "npm --prefix frontend run test:unit",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
     "npm-run-all2": "^8.0.4"
   }
 }
