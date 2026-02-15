@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration constants
-const BACKEND_ENV_PATH = path.resolve(__dirname, "../plan-tracker-back/.env");
+const BACKEND_ENV_PATH = path.resolve(__dirname, "../backend/.env");
 const TUNNEL_CMD = "cloudflared";
 const TUNNEL_ARGS = ["tunnel", "--url", "http://localhost:5173", "--protocol", "http2"];
 

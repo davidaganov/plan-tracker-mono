@@ -1,0 +1,205 @@
+{
+  "common": {
+    "loading": "Завантаження...",
+    "close": "Закрити",
+    "apply": "Застосувати",
+    "change": "Змінити",
+    "actions": {
+      "open": "Відкрити",
+      "send": "Надіслати",
+      "create": "Створити",
+      "inviteLink": "Запросити",
+      "cancel": "Скасувати",
+      "add": "Додати",
+      "select": "Вибрати",
+      "delete": "Видалити",
+      "selectAll": "Вибрати все",
+      "clearAll": "Очистити все",
+      "edit": "Редагувати",
+      "search": "Пошук",
+      "save": "Зберегти",
+      "undo": "Скасувати дію",
+      "clearFilters": "Очистити фільтри"
+    },
+    "languages": {
+      "en": "Англійська",
+      "ru": "Російська"
+    },
+    "messages": {
+      "deleted": "Видалено: {count}",
+      "noFilterResults": "Результатів за вашими фільтрами не знайдено"
+    },
+    "scopes": {
+      "family": "Сім'я",
+      "personal": "Особисте"
+    },
+    "lists": {
+      "all": "Усі списки",
+      "create": {
+        "title": "Створити список",
+        "namePlaceholder": "Назва списку",
+        "submit": "Створити"
+      },
+      "details": {
+        "addItem": "Додати пункт",
+        "addTemplate": "Додати з шаблону",
+        "empty": "Список порожній",
+        "items": "Пункти ({count})"
+      },
+      "templates": {
+        "selectTitle": "Вибрати шаблони",
+        "apply": "Застосувати шаблони",
+        "noTemplates": "Немає доступних шаблонів",
+        "templateEmpty": "Шаблон порожній"
+      }
+    },
+    "errors": {
+      "loadFailed": "Не вдалося завантажити дані",
+      "loadListsFailed": "Не вдалося завантажити списки",
+      "loadProductsFailed": "Не вдалося завантажити продукти",
+      "loadTemplatesFailed": "Не вдалося завантажити шаблони",
+      "loadLocationsFailed": "Не вдалося завантажити локації"
+    },
+    "fields": {
+      "note": "Примітка",
+      "quantity": "Кількість",
+      "unit": "Одиниця вимірювання",
+      "priceType": "Тип ціни",
+      "currency": "Валюта",
+      "price": "Ціна",
+      "minPrice": "Мін. ціна",
+      "maxPrice": "Макс. ціна"
+    },
+    "units": {
+      "pcs": "шт.",
+      "kg": "кг",
+      "g": "г",
+      "l": "л",
+      "ml": "мл"
+    },
+    "unitFullNames": {
+      "pcs": "штука | штуки",
+      "kg": "кілограм | кілограми",
+      "g": "грам | грами",
+      "l": "літр | літри",
+      "ml": "мілілітр | мілілітри"
+    },
+    "priceTypes": {
+      "none": "Немає",
+      "exact": "Точна",
+      "range": "Діапазон"
+    },
+    "sort": {
+      "label": "Сортування",
+      "priceAsc": "Ціна ↑",
+      "priceDesc": "Ціна ↓"
+    },
+    "multiSelect": {
+      "placeholder": "Виберіть варіанти...",
+      "selectedCount": "Вибрано {count}",
+      "empty": "Варіантів не знайдено."
+    }
+  },
+  "units": {
+    "items": "{count} одиниць",
+    "tasks": "{count} завдань",
+    "members": "{count} учасників"
+  },
+  "roles": {
+    "admin": "Адмін",
+    "reader": "Читач"
+  },
+  "nav": {
+    "products": "Продукти",
+    "tasks": "Завдання",
+    "family": "Сім'я",
+    "settings": "Налаштування"
+  },
+  "pages": {
+    "products": {
+      "searchItems": "Пошук товарів",
+      "tabs": {
+        "lists": "Списки",
+        "catalog": "Каталог",
+        "templates": "Шаблони",
+        "locations": "Локації"
+      },
+      "items": {
+        "catalog_empty": "У каталозі немає товарів",
+        "templates_empty": "Немає шаблонів",
+        "locations_empty": "Немає локацій",
+        "lists_empty": "Немає списків",
+        "priceSet": "Ціна встановлена",
+        "itemsCount": "товарів"
+      },
+      "create": {
+        "nameLabel": "Назва",
+        "namePlaceholder": "Назва продукту",
+        "locationLabel": "Локація",
+        "locationPlaceholder": "Назва локації",
+        "priceLabel": "Ціна",
+        "priceExact": "Точна",
+        "priceRange": "Діапазон",
+        "priceFromPlaceholder": "Від",
+        "priceToPlaceholder": "До",
+        "pricePlaceholder": "Ціна продукту",
+        "submit": "Створити продукт",
+        "templateName": "Назва шаблону",
+        "selectProducts": "Продукти",
+        "searchProducts": "Пошук продуктів",
+        "tagsLabel": "Теги",
+        "tagsPlaceholder": "Додати теги",
+        "filterByTags": "Фільтрувати за тегами",
+        "quantityRegulated": "Регульована",
+        "quantityUnregulated": "Нерегульована"
+      },
+      "filter": {
+        "tags": "Теги",
+        "locations": "Локації"
+      },
+      "templateDetails": "Шаблон",
+      "productsInTemplate": "Продукти ({count})",
+      "noProductsInTemplate": "У шаблоні немає продуктів",
+      "addProduct": "Додати продукт",
+      "newProduct": "Новий продукт",
+      "backToTemplates": "Назад до шаблонів"
+    },
+    "tasks": {
+      "searchTasks": "Пошук завдань"
+    },
+    "family": {
+      "yourFamilies": "Ваші сім'ї"
+    },
+    "settings": {
+      "theme": "Тема",
+      "themeAuto": "Авто",
+      "themeLight": "Світла",
+      "themeDark": "Темна",
+      "accentColor": "Колір акценту",
+      "accentChoose": "Вибрати акцент",
+      "accentCustom": "Власний колір",
+      "accentBlue": "Синій",
+      "accentViolet": "Фіолетовий",
+      "accentCyan": "Блакитний",
+      "accentGreen": "Зелений",
+      "accentLime": "Лаймовий",
+      "accentYellow": "Жовтий",
+      "accentOrange": "Помаранчевий",
+      "accentRed": "Червоний",
+      "accentPink": "Рожевий",
+      "accentIndigo": "Індиго",
+      "currency": "Валюта",
+      "language": "Мова",
+      "authRequired": "Відкрийте додаток із Telegram, щоб зберегти налаштування."
+    }
+  },
+  "ui": {
+    "tabs": {
+      "ariaLabel": "Вкладки"
+    },
+    "command": {
+      "paletteTitle": "Командна палітра",
+      "paletteSearch": "Введіть команду для запуску..."
+    }
+  }
+}
