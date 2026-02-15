@@ -4,22 +4,22 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-with-tunnel.js",
-    "dev:backend": "npm --prefix plan-tracker-back run dev",
-    "dev:frontend": "npm --prefix plan-tracker-front run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
     "dev:all": "run-p dev:backend dev:frontend",
-    "tunnel": "npm --prefix plan-tracker-front run dev:tunnel",
+    "tunnel": "npm --prefix frontend run dev:tunnel",
     "lint": "run-s lint:backend lint:frontend",
-    "lint:backend": "npm --prefix plan-tracker-back run lint",
-    "lint:frontend": "npm --prefix plan-tracker-front run lint",
+    "lint:backend": "npm --prefix backend run lint",
+    "lint:frontend": "npm --prefix frontend run lint",
     "format": "run-s format:backend format:frontend",
-    "format:backend": "npm --prefix plan-tracker-back run format",
-    "format:frontend": "npm --prefix plan-tracker-front run format",
+    "format:backend": "npm --prefix backend run format",
+    "format:frontend": "npm --prefix frontend run format",
     "format:check": "run-s format:check:backend format:check:frontend",
-    "format:check:backend": "npm --prefix plan-tracker-back run format:check",
-    "format:check:frontend": "npm --prefix plan-tracker-front run format:check",
+    "format:check:backend": "npm --prefix backend run format:check",
+    "format:check:frontend": "npm --prefix frontend run format:check",
     "install:all": "run-s install:backend install:frontend",
-    "install:backend": "npm --prefix plan-tracker-back install",
-    "install:frontend": "npm --prefix plan-tracker-front install"
+    "install:backend": "npm --prefix backend install",
+    "install:frontend": "npm --prefix frontend install"
   },
   "devDependencies": {
     "npm-run-all2": "^8.0.4"

@@ -42,7 +42,8 @@ export function setupI18n(locale: SUPPORT_LOCALES) {
     messages,
     availableLocales: getAvailableLanguageCodes(),
     pluralRules: {
-      [SUPPORT_LOCALES.RU]: slavicPluralizationRule
+      [SUPPORT_LOCALES.RU]: slavicPluralizationRule,
+      [SUPPORT_LOCALES.UK]: slavicPluralizationRule
     }
   })
   setI18nLanguage(i18n, locale)
