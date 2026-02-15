@@ -17,7 +17,7 @@
     "build:prod": "vite build --mode production",
     "preview": "vite preview",
     "preview:prod": "vite preview --mode production",
-    "test:unit": "vitest",
+    "test": "vitest",
     "icons:optimize": "svgo -f public/icons -r || exit 0",
     "type-check": "vue-tsc --build",
     "lint:fix": "eslint . --fix",
