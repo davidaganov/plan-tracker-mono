@@ -9,6 +9,7 @@ import productsRoutes from "@/modules/products/routes"
 import settingsRoutes from "@/modules/settings/routes"
 import templatesRoutes from "@/modules/templates/routes"
 import userRoutes from "@/modules/users/routes"
+import { TAGS, TAGS_DESCRIPTION } from "@/common/utils/schemas"
 import authPlugin from "@/plugins/auth"
 import errorHandlerPlugin from "@/plugins/error-handler"
 import prismaPlugin from "@/plugins/prisma"
@@ -38,6 +39,23 @@ export async function buildApp() {
         description: "API documentation for Plans Tracker",
         version: "1.0.0"
       },
+      tags: [
+        { name: TAGS.USERS, description: TAGS_DESCRIPTION[TAGS.USERS] },
+        { name: TAGS.FAMILIES, description: TAGS_DESCRIPTION[TAGS.FAMILIES] },
+        { name: TAGS.FAMILIES_FOR_ID, description: TAGS_DESCRIPTION[TAGS.FAMILIES_FOR_ID] },
+        { name: TAGS.TEMPLATES, description: TAGS_DESCRIPTION[TAGS.TEMPLATES] },
+        { name: TAGS.SETTINGS, description: TAGS_DESCRIPTION[TAGS.SETTINGS] },
+        { name: TAGS.LISTS, description: TAGS_DESCRIPTION[TAGS.LISTS] },
+        { name: TAGS.LISTS_FOR_ID, description: TAGS_DESCRIPTION[TAGS.LISTS_FOR_ID] },
+        { name: TAGS.LOCATIONS, description: TAGS_DESCRIPTION[TAGS.LOCATIONS] },
+        {
+          name: TAGS.LOCATIONS_FOR_ID,
+          description: TAGS_DESCRIPTION[TAGS.LOCATIONS_FOR_ID]
+        },
+        { name: TAGS.PRODUCTS, description: TAGS_DESCRIPTION[TAGS.PRODUCTS] },
+        { name: TAGS.PRODUCTS_FOR_ID, description: TAGS_DESCRIPTION[TAGS.PRODUCTS_FOR_ID] },
+        { name: TAGS.OTHER, description: TAGS_DESCRIPTION[TAGS.OTHER] }
+      ],
       servers: [
         {
           url: "http://localhost:3000",
