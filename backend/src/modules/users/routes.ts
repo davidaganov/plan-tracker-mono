@@ -2,10 +2,20 @@ import { FastifyPluginAsync } from "fastify"
 import { SettingsService } from "@/modules/settings/service"
 import { getAuthUser } from "@/common/hooks"
 
+const schema = {
+  tags: ["Users"],
+  summary: "Get current user",
+  description: "Returns authenticated user with settings",
+  response: {
+    200: {
+      type: "object"
+    }
+  }
+}
 const userRoutes: FastifyPluginAsync = async (fastify) => {
   const settingsService = new SettingsService(fastify.prisma)
 
-  fastify.get("/", async (req) => {
+  fastify.get("/", { schema }, async (req) => {
     const user = getAuthUser(req)
 
     const settings = await settingsService.getOrCreate(user.id)

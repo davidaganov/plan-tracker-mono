@@ -10,6 +10,17 @@ import type {
   BatchDeleteDto
 } from "@plans-tracker/types"
 
+const schema = {
+  tags: ["Locations"],
+  summary: "Location management",
+  description: "Endpoints for managing locations, including CRUD operations",
+  response: {
+    200: {
+      type: "object"
+    }
+  }
+}
+
 /**
  * Routes for location management.
  */
@@ -19,7 +30,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // List locations
   fastify.get<{
     Querystring: { familyId?: string }
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     if (req.query.familyId) {
       return locationsService.listForFamilySelect(user.id, req.query.familyId)
@@ -30,7 +41,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // Create a location
   fastify.post<{
     Body: CreateLocationDto
-  }>("/", async (req, reply) => {
+  }>("/", { schema }, async (req, reply) => {
     const user = getAuthUser(req)
     const location = await locationsService.create(user.id, req.body.title, req.body.note)
     return reply.status(201).send(location)
@@ -40,7 +51,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { locationId: string }
     Body: UpdateLocationDto
-  }>("/:locationId", async (req) => {
+  }>("/:locationId", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.update(user.id, req.params.locationId, req.body.title, req.body.note)
   })
@@ -48,7 +59,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a location
   fastify.delete<{
     Params: { locationId: string }
-  }>("/:locationId", async (req) => {
+  }>("/:locationId", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.remove(user.id, req.params.locationId)
   })
@@ -56,7 +67,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete multiple locations
   fastify.delete<{
     Body: BatchDeleteDto
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.removeMany(user.id, req.body.ids)
   })
@@ -65,7 +76,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { locationId: string }
     Body: ShareLocationDto
-  }>("/:locationId/share", async (req) => {
+  }>("/:locationId/share", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.share(user.id, req.params.locationId, req.body.familyId)
   })
@@ -74,7 +85,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { locationId: string }
     Body: ShareLocationDto
-  }>("/:locationId/unshare", async (req) => {
+  }>("/:locationId/unshare", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.unshare(user.id, req.params.locationId, req.body.familyId)
   })
@@ -90,7 +101,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // Reorder locations
   fastify.put<{
     Body: ReorderItemsDto
-  }>("/reorder", async (req) => {
+  }>("/reorder", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.reorder(user.id, req.body.orderedIds)
   })
