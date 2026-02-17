@@ -38,6 +38,10 @@ dev.db
 /cypress/videos/
 /cypress/screenshots/
 
+# migrations
+backend/prisma/migrations/*
+
+
 # Vitest
 __screenshots__/
 

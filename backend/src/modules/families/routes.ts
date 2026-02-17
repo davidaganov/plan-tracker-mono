@@ -10,6 +10,12 @@ import type {
   FamilyDto,
   FamilyBaseDto
 } from "@plans-tracker/types"
+import { schema, schemaByID } from "./families.schema"
+
+/**
+ *
+ * schema for family management.
+ */
 
 /**
  * Routes for family management.
@@ -20,7 +26,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // List my families
   fastify.get<{
     Reply: FamilyDto[]
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.listMyFamilies(user.id)
   })
@@ -29,7 +35,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Body: CreateFamilyDto
     Reply: FamilyBaseDto
-  }>("/", async (req, reply) => {
+  }>("/", { schema }, async (req, reply) => {
     const user = getAuthUser(req)
     const family = await familiesService.createFamily(user.id, req.body.name)
     return reply.status(201).send(family)
@@ -38,7 +44,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Set favorite family
   fastify.patch<{
     Body: SetFavoriteFamilyDto
-  }>("/favorite", async (req) => {
+  }>("/favorite", { schema }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.setFavoriteFamily(user.id, req.body.familyId)
   })
@@ -47,7 +53,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.get<{
     Params: { familyId: string }
     Reply: FamilyBaseDto
-  }>("/:familyId", async (req) => {
+  }>("/:familyId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     await familiesService.getMyMembershipOrThrow(user.id, req.params.familyId)
     return familiesService.getFamilyOrThrow(req.params.familyId)
@@ -58,7 +64,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
     Params: { familyId: string }
     Body: UpdateFamilyDto
     Reply: FamilyBaseDto
-  }>("/:familyId", async (req) => {
+  }>("/:familyId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     if (!req.body.name) {
       return familiesService.getFamilyOrThrow(req.params.familyId)
@@ -69,7 +75,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a family
   fastify.delete<{
     Params: { familyId: string }
-  }>("/:familyId", async (req) => {
+  }>("/:familyId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.deleteFamily(user.id, req.params.familyId)
   })
@@ -77,7 +83,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Leave a family
   fastify.post<{
     Params: { familyId: string }
-  }>("/:familyId/leave", async (req) => {
+  }>("/:familyId/leave", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.leaveFamily(user.id, req.params.familyId)
   })
@@ -85,7 +91,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // List family members
   fastify.get<{
     Params: { familyId: string }
-  }>("/:familyId/members", async (req) => {
+  }>("/:familyId/members", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.listMembers(user.id, req.params.familyId)
   })
@@ -94,7 +100,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { familyId: string; userId: string }
     Body: UpdateMemberRoleDto
-  }>("/:familyId/members/:userId", async (req) => {
+  }>("/:familyId/members/:userId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.updateMemberRole(
       user.id,
@@ -107,7 +113,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Remove member
   fastify.delete<{
     Params: { familyId: string; userId: string }
-  }>("/:familyId/members/:userId", async (req) => {
+  }>("/:familyId/members/:userId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.removeMember(user.id, req.params.familyId, req.params.userId)
   })
@@ -115,7 +121,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Create invite
   fastify.post<{
     Params: { familyId: string }
-  }>("/:familyId/invites", async (req) => {
+  }>("/:familyId/invites", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.createInvite(user.id, req.params.familyId)
   })
@@ -123,7 +129,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Get invite info
   fastify.get<{
     Params: { token: string }
-  }>("/invites/:token", async (req) => {
+  }>("/invites/:token", { schema }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.getInviteInfo(user.id, req.params.token)
   })
@@ -131,7 +137,7 @@ const familiesRoutes: FastifyPluginAsync = async (fastify) => {
   // Accept invite
   fastify.post<{
     Body: AcceptInviteDto
-  }>("/invites/accept", async (req) => {
+  }>("/invites/accept", { schema }, async (req) => {
     const user = getAuthUser(req)
     return familiesService.acceptInvite(user.id, req.body.token)
   })
