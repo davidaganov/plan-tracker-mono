@@ -1,8 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
-import {
-  schemaLists as schema,
-  schemaListsByID as schemaByID
-} from "@/modules/lists/routes/list-schemas"
+import { schema, schemaByID } from "@/modules/lists/routes/lists.schema"
 import { ListsService } from "@/modules/lists/services"
 import { getAuthUser } from "@/common/hooks"
 import {

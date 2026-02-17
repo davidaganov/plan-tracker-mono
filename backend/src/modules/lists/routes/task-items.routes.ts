@@ -1,8 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
-import {
-  schemaLists as schema,
-  schemaListsByID as schemaByID
-} from "@/modules/lists/routes/list-schemas"
+import { schemaByIDTasks } from "@/modules/lists/routes/lists.schema"
 import { TaskItemsService } from "@/modules/lists/services"
 import { getAuthUser } from "@/common/hooks"
 import type {
@@ -21,7 +18,7 @@ const taskItemsRoutes: FastifyPluginAsync = async (fastify) => {
   // List all task items
   fastify.get<{
     Params: { listId: string }
-  }>("/:listId/task-items", { schema: schemaByID }, async (req) => {
+  }>("/:listId/task-items", { schema: schemaByIDTasks }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.listItems(user.id, req.params.listId)
   })
@@ -30,7 +27,7 @@ const taskItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string }
     Body: CreateTaskItemDto
-  }>("/:listId/task-items", { schema: schemaByID }, async (req, reply) => {
+  }>("/:listId/task-items", { schema: schemaByIDTasks }, async (req, reply) => {
     const user = getAuthUser(req)
     const item = await itemsService.createItem(user.id, req.params.listId, req.body)
     return reply.status(201).send(item)
@@ -40,7 +37,7 @@ const taskItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { listId: string; itemId: string }
     Body: UpdateTaskItemDto
-  }>("/:listId/task-items/:itemId", { schema: schemaByID }, async (req) => {
+  }>("/:listId/task-items/:itemId", { schema: schemaByIDTasks }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.updateItem(user.id, req.params.listId, req.params.itemId, req.body)
   })
@@ -49,7 +46,7 @@ const taskItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string; itemId: string }
     Body: ToggleItemDto
-  }>("/:listId/task-items/:itemId/toggle", { schema: schemaByID }, async (req) => {
+  }>("/:listId/task-items/:itemId/toggle", { schema: schemaByIDTasks }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.toggleItem(
       user.id,
@@ -62,7 +59,7 @@ const taskItemsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a task item
   fastify.delete<{
     Params: { listId: string; itemId: string }
-  }>("/:listId/task-items/:itemId", { schema: schemaByID }, async (req) => {
+  }>("/:listId/task-items/:itemId", { schema: schemaByIDTasks }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.removeItem(user.id, req.params.listId, req.params.itemId)
   })
@@ -72,7 +69,7 @@ const taskItemsRoutes: FastifyPluginAsync = async (fastify) => {
     Params: { listId: string }
     Querystring: { checked?: string }
     Body: ReorderItemsDto
-  }>("/:listId/task-items/reorder", { schema: schemaByID }, async (req) => {
+  }>("/:listId/task-items/reorder", { schema: schemaByIDTasks }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.reorderItems(
       user.id,

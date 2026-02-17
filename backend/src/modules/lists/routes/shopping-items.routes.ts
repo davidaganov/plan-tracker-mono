@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
-import { schemaListsByID as schemaByID } from "@/modules/lists/routes/list-schemas"
+import { schemaByIDShopping } from "@/modules/lists/routes/lists.schema"
 import {
   ShoppingItemsService,
   SendListService,
@@ -26,7 +26,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   // List all shopping items
   fastify.get<{
     Params: { listId: string }
-  }>("/:listId/shopping-items", { schema: schemaByID }, async (req) => {
+  }>("/:listId/shopping-items", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.listItems(user.id, req.params.listId)
   })
@@ -35,7 +35,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string }
     Body: CreateShoppingItemDto
-  }>("/:listId/shopping-items", { schema: schemaByID }, async (req, reply) => {
+  }>("/:listId/shopping-items", { schema: schemaByIDShopping }, async (req, reply) => {
     const user = getAuthUser(req)
     const item = await itemsService.createItem(user.id, req.params.listId, req.body)
     return reply.status(201).send(item)
@@ -45,7 +45,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { listId: string; itemId: string }
     Body: UpdateShoppingItemDto
-  }>("/:listId/shopping-items/:itemId", { schema: schemaByID }, async (req) => {
+  }>("/:listId/shopping-items/:itemId", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.updateItem(user.id, req.params.listId, req.params.itemId, req.body)
   })
@@ -54,7 +54,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string; itemId: string }
     Body: ToggleItemDto
-  }>("/:listId/shopping-items/:itemId/toggle", { schema: schemaByID }, async (req) => {
+  }>("/:listId/shopping-items/:itemId/toggle", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.toggleItem(
       user.id,
@@ -67,7 +67,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a shopping item
   fastify.delete<{
     Params: { listId: string; itemId: string }
-  }>("/:listId/shopping-items/:itemId", { schema: schemaByID }, async (req) => {
+  }>("/:listId/shopping-items/:itemId", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.removeItem(user.id, req.params.listId, req.params.itemId)
   })
@@ -77,7 +77,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
     Params: { listId: string }
     Querystring: { checked?: string }
     Body: ReorderItemsDto
-  }>("/:listId/shopping-items/reorder", { schema: schemaByID }, async (req) => {
+  }>("/:listId/shopping-items/reorder", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return itemsService.reorderItems(
       user.id,
@@ -91,7 +91,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string }
     Body: ApplyTemplatesDto
-  }>("/:listId/shopping-items/apply-templates", { schema: schemaByID }, async (req) => {
+  }>("/:listId/shopping-items/apply-templates", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return templateService.applyTemplates(user.id, req.params.listId, req.body.templateIds)
   })
@@ -100,7 +100,7 @@ const shoppingItemsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string }
     Body: SendListDto
-  }>("/:listId/send", { schema: schemaByID }, async (req) => {
+  }>("/:listId/send", { schema: schemaByIDShopping }, async (req) => {
     const user = getAuthUser(req)
     return sendService.sendList(user.id, req.params.listId, req.body)
   })

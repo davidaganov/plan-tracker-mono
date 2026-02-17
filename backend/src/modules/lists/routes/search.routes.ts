@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
-import { schemaLists as schema } from "@/modules/lists/routes/list-schemas"
+import { schema } from "@/modules/lists/routes/lists.schema"
 import { SearchItemsService } from "@/modules/lists/services"
 import { getAuthUser } from "@/common/hooks"
 import type { SearchItemsQuery } from "@plans-tracker/types"

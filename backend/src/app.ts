@@ -47,14 +47,19 @@ export async function buildApp() {
         { name: TAGS.SETTINGS, description: TAGS_DESCRIPTION[TAGS.SETTINGS] },
         { name: TAGS.LISTS, description: TAGS_DESCRIPTION[TAGS.LISTS] },
         { name: TAGS.LISTS_FOR_ID, description: TAGS_DESCRIPTION[TAGS.LISTS_FOR_ID] },
+        { name: TAGS.LISTS_FOR_ID_TASKS, description: TAGS_DESCRIPTION[TAGS.LISTS_FOR_ID_TASKS] },
+        {
+          name: TAGS.LISTS_FOR_ID_SHOPPING,
+          description: TAGS_DESCRIPTION[TAGS.LISTS_FOR_ID_SHOPPING]
+        },
         { name: TAGS.LOCATIONS, description: TAGS_DESCRIPTION[TAGS.LOCATIONS] },
         {
           name: TAGS.LOCATIONS_FOR_ID,
           description: TAGS_DESCRIPTION[TAGS.LOCATIONS_FOR_ID]
         },
         { name: TAGS.PRODUCTS, description: TAGS_DESCRIPTION[TAGS.PRODUCTS] },
-        { name: TAGS.PRODUCTS_FOR_ID, description: TAGS_DESCRIPTION[TAGS.PRODUCTS_FOR_ID] },
-        { name: TAGS.OTHER, description: TAGS_DESCRIPTION[TAGS.OTHER] }
+
+        { name: TAGS.PRODUCTS_FOR_ID, description: TAGS_DESCRIPTION[TAGS.PRODUCTS_FOR_ID] }
       ],
       servers: [
         {

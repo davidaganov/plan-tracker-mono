@@ -2,11 +2,12 @@ import { FastifyPluginAsync } from "fastify"
 import { SettingsService } from "@/modules/settings/service"
 import { getAuthUser } from "@/common/hooks"
 import { CurrencyCode, SUPPORT_LOCALES, THEME } from "@plans-tracker/types"
+import { schema } from "./settings.schema"
 
 const settingsRoutes: FastifyPluginAsync = async (fastify) => {
   const settingsService = new SettingsService(fastify.prisma)
 
-  fastify.get("/", async (req) => {
+  fastify.get("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return settingsService.getOrCreate(user.id)
   })
@@ -18,7 +19,7 @@ const settingsRoutes: FastifyPluginAsync = async (fastify) => {
       locale?: SUPPORT_LOCALES
       currency?: CurrencyCode
     }
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return settingsService.update(user.id, req.body)
   })

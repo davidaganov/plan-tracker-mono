@@ -9,17 +9,7 @@ import type {
   ReorderItemsDto,
   BatchDeleteDto
 } from "@plans-tracker/types"
-
-const schema = {
-  tags: ["Locations"],
-  summary: "Location management",
-  description: "Endpoints for managing locations, including CRUD operations",
-  response: {
-    200: {
-      type: "object"
-    }
-  }
-}
+import { schema, schemaByID } from "./locations.schema"
 
 /**
  * Routes for location management.
@@ -51,7 +41,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { locationId: string }
     Body: UpdateLocationDto
-  }>("/:locationId", { schema }, async (req) => {
+  }>("/:locationId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.update(user.id, req.params.locationId, req.body.title, req.body.note)
   })
@@ -59,7 +49,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a location
   fastify.delete<{
     Params: { locationId: string }
-  }>("/:locationId", { schema }, async (req) => {
+  }>("/:locationId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.remove(user.id, req.params.locationId)
   })
@@ -76,7 +66,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { locationId: string }
     Body: ShareLocationDto
-  }>("/:locationId/share", { schema }, async (req) => {
+  }>("/:locationId/share", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.share(user.id, req.params.locationId, req.body.familyId)
   })
@@ -85,7 +75,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { locationId: string }
     Body: ShareLocationDto
-  }>("/:locationId/unshare", { schema }, async (req) => {
+  }>("/:locationId/unshare", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.unshare(user.id, req.params.locationId, req.body.familyId)
   })
@@ -93,7 +83,7 @@ const locationsRoutes: FastifyPluginAsync = async (fastify) => {
   // Batch set location sharing
   fastify.post<{
     Body: SetLocationSharingDto
-  }>("/sharing", async (req) => {
+  }>("/sharing", { schema }, async (req) => {
     const user = getAuthUser(req)
     return locationsService.setSharing(user.id, req.body.familyId, req.body.locationIds)
   })

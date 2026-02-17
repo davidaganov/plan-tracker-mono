@@ -1,7 +1,6 @@
 import { FastifyPluginAsync } from "fastify"
 import { FamiliesService } from "@/modules/families/service"
 import { getAuthUser } from "@/common/hooks"
-import { TAGS } from "@/common/utils/schemas"
 import type {
   CreateFamilyDto,
   UpdateFamilyDto,
@@ -11,33 +10,12 @@ import type {
   FamilyDto,
   FamilyBaseDto
 } from "@plans-tracker/types"
+import { schema, schemaByID } from "./families.schema"
 
 /**
  *
  * schema for family management.
  */
-const schema = {
-  tags: [TAGS.FAMILIES],
-  summary: "Family management",
-  description:
-    "Endpoints for managing families, including CRUD operations, sharing with families, and reordering.",
-  response: {
-    200: {
-      type: "object"
-    }
-  }
-}
-const schemaByID = {
-  tags: [TAGS.FAMILIES_FOR_ID],
-  summary: "Family management for a specific family ID",
-  description:
-    "Endpoints for managing families, including CRUD operations, sharing with families, and reordering.",
-  response: {
-    200: {
-      type: "object"
-    }
-  }
-}
 
 /**
  * Routes for family management.
