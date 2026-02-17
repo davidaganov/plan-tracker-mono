@@ -23,7 +23,8 @@
     },
     "languages": {
       "en": "English",
-      "ru": "Russian"
+      "ru": "Russian",
+      "uk": "Ukrainian"
     },
     "messages": {
       "deleted": "Deleted: {count}",
