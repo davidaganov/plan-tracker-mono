@@ -11,9 +11,9 @@
       "inviteLink": "Запросити",
       "cancel": "Скасувати",
       "add": "Додати",
-      "select": "Обрати",
+      "select": "Вибрати",
       "delete": "Видалити",
-      "selectAll": "Обрати всі",
+      "selectAll": "Вибрати всі",
       "clearAll": "Очистити все",
       "edit": "Редагувати",
       "search": "Пошук",
@@ -31,8 +31,8 @@
       "noFilterResults": "Немає результатів за вибраними фільтрами"
     },
     "scopes": {
-      "family": "Сімейний",
-      "personal": "Особистий"
+      "family": "Сімʼя",
+      "personal": "Особисте"
     },
     "lists": {
       "all": "Усі списки",
@@ -48,7 +48,7 @@
         "items": "Елементи ({count})"
       },
       "templates": {
-        "selectTitle": "Обрати шаблони",
+        "selectTitle": "Вибрати шаблони",
         "apply": "Застосувати шаблони",
         "noTemplates": "Немає доступних шаблонів",
         "templateEmpty": "Шаблон порожній"
@@ -64,7 +64,7 @@
     "fields": {
       "note": "Примітка",
       "quantity": "Кількість",
-      "unit": "Одиниця",
+      "unit": "Одиниця вимірювання",
       "priceType": "Тип ціни",
       "currency": "Валюта",
       "price": "Ціна",
@@ -96,9 +96,9 @@
       "priceDesc": "Ціна ↓"
     },
     "multiSelect": {
-      "placeholder": "Оберіть варіанти...",
-      "selectedCount": "Обрано: {count}",
-      "empty": "Нічого не знайдено."
+      "placeholder": "Виберіть варіанти...",
+      "selectedCount": "Вибрано {count}",
+      "empty": "Варіантів не знайдено."
     }
   },
   "units": {
@@ -107,7 +107,7 @@
     "members": "{count} учасників"
   },
   "roles": {
-    "admin": "Адміністратор",
+    "admin": "Адмін",
     "reader": "Читач"
   },
   "nav": {
@@ -118,7 +118,7 @@
   },
   "pages": {
     "products": {
-      "searchItems": "Пошук елементів",
+      "searchItems": "Пошук товарів",
       "tabs": {
         "lists": "Списки",
         "catalog": "Каталог",
@@ -126,12 +126,12 @@
         "locations": "Локації"
       },
       "items": {
-        "catalog_empty": "У каталозі немає елементів",
+        "catalog_empty": "У каталозі немає товарів",
         "templates_empty": "Немає шаблонів",
         "locations_empty": "Немає локацій",
         "lists_empty": "Немає списків",
-        "priceSet": "Ціну встановлено",
-        "itemsCount": "елементів"
+        "priceSet": "Ціна встановлена",
+        "itemsCount": "товарів"
       },
       "create": {
         "nameLabel": "Назва",
@@ -177,7 +177,7 @@
       "themeLight": "Світла",
       "themeDark": "Темна",
       "accentColor": "Акцентний колір",
-      "accentChoose": "Обрати акцент",
+      "accentChoose": "Вибрати акцент",
       "accentCustom": "Власний колір",
       "accentBlue": "Синій",
       "accentViolet": "Фіолетовий",
@@ -199,8 +199,8 @@
       "ariaLabel": "Вкладки"
     },
     "command": {
-      "paletteTitle": "Командна панель",
-      "paletteSearch": "Знайти команду для виконання..."
+      "paletteTitle": "Командна палітра",
+      "paletteSearch": "Введіть команду для запуску..."
     }
   }
 }
