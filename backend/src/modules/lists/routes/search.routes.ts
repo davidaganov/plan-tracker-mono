@@ -1,4 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
+import { schema } from "@/modules/lists/routes/lists.schema"
 import { SearchItemsService } from "@/modules/lists/services"
 import { getAuthUser } from "@/common/hooks"
 import type { SearchItemsQuery } from "@plans-tracker/types"
@@ -12,7 +13,7 @@ const searchRoutes: FastifyPluginAsync = async (fastify) => {
   // Search items across lists
   fastify.get<{
     Querystring: SearchItemsQuery
-  }>("/search", async (req) => {
+  }>("/search", { schema }, async (req) => {
     const user = getAuthUser(req)
     return searchService.searchItems(user.id, req.query)
   })

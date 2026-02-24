@@ -13,7 +13,7 @@
       "add": "Додати",
       "select": "Вибрати",
       "delete": "Видалити",
-      "selectAll": "Вибрати все",
+      "selectAll": "Вибрати всі",
       "clearAll": "Очистити все",
       "edit": "Редагувати",
       "search": "Пошук",
@@ -23,14 +23,15 @@
     },
     "languages": {
       "en": "Англійська",
-      "ru": "Російська"
+      "ru": "Російська",
+      "uk": "Українська"
     },
     "messages": {
       "deleted": "Видалено: {count}",
-      "noFilterResults": "Результатів за вашими фільтрами не знайдено"
+      "noFilterResults": "Немає результатів за вибраними фільтрами"
     },
     "scopes": {
-      "family": "Сім'я",
+      "family": "Сімʼя",
       "personal": "Особисте"
     },
     "lists": {
@@ -41,10 +42,10 @@
         "submit": "Створити"
       },
       "details": {
-        "addItem": "Додати пункт",
+        "addItem": "Додати елемент",
         "addTemplate": "Додати з шаблону",
         "empty": "Список порожній",
-        "items": "Пункти ({count})"
+        "items": "Елементи ({count})"
       },
       "templates": {
         "selectTitle": "Вибрати шаблони",
@@ -85,7 +86,7 @@
       "ml": "мілілітр | мілілітри"
     },
     "priceTypes": {
-      "none": "Немає",
+      "none": "Без ціни",
       "exact": "Точна",
       "range": "Діапазон"
     },
@@ -101,7 +102,7 @@
     }
   },
   "units": {
-    "items": "{count} одиниць",
+    "items": "{count} елементів",
     "tasks": "{count} завдань",
     "members": "{count} учасників"
   },
@@ -149,7 +150,7 @@
         "searchProducts": "Пошук продуктів",
         "tagsLabel": "Теги",
         "tagsPlaceholder": "Додати теги",
-        "filterByTags": "Фільтрувати за тегами",
+        "filterByTags": "Фільтр за тегами",
         "quantityRegulated": "Регульована",
         "quantityUnregulated": "Нерегульована"
       },
@@ -168,14 +169,14 @@
       "searchTasks": "Пошук завдань"
     },
     "family": {
-      "yourFamilies": "Ваші сім'ї"
+      "yourFamilies": "Ваші сімʼї"
     },
     "settings": {
       "theme": "Тема",
       "themeAuto": "Авто",
       "themeLight": "Світла",
       "themeDark": "Темна",
-      "accentColor": "Колір акценту",
+      "accentColor": "Акцентний колір",
       "accentChoose": "Вибрати акцент",
       "accentCustom": "Власний колір",
       "accentBlue": "Синій",
@@ -190,7 +191,7 @@
       "accentIndigo": "Індиго",
       "currency": "Валюта",
       "language": "Мова",
-      "authRequired": "Відкрийте додаток із Telegram, щоб зберегти налаштування."
+      "authRequired": "Відкрийте застосунок з Telegram, щоб зберегти налаштування."
     }
   },
   "ui": {

@@ -1,4 +1,5 @@
 import { FastifyPluginAsync } from "fastify"
+import { schema, schemaByID } from "@/modules/lists/routes/lists.schema"
 import { ListsService } from "@/modules/lists/services"
 import { getAuthUser } from "@/common/hooks"
 import {
@@ -24,7 +25,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
       familyId?: string
       scope?: SEARCH_SCOPE
     }
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     const { type, familyId, scope } = req.query
 
@@ -42,7 +43,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   // Create a new list
   fastify.post<{
     Body: CreateListDto
-  }>("/", async (req, reply) => {
+  }>("/", { schema }, async (req, reply) => {
     const user = getAuthUser(req)
     const list = await listsService.createList(user.id, req.body)
     return reply.status(201).send(list)
@@ -51,7 +52,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   // Get a single list
   fastify.get<{
     Params: { listId: string }
-  }>("/:listId", async (req) => {
+  }>("/:listId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return listsService.getList(user.id, req.params.listId)
   })
@@ -60,7 +61,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { listId: string }
     Body: UpdateListDto
-  }>("/:listId", async (req) => {
+  }>("/:listId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return listsService.updateList(user.id, req.params.listId, req.body)
   })
@@ -68,7 +69,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a list
   fastify.delete<{
     Params: { listId: string }
-  }>("/:listId", async (req) => {
+  }>("/:listId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return listsService.deleteList(user.id, req.params.listId)
   })
@@ -76,7 +77,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete multiple lists
   fastify.delete<{
     Body: BatchDeleteDto
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return listsService.deleteLists(user.id, req.body.ids)
   })
@@ -85,7 +86,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string }
     Body: ShareListDto
-  }>("/:listId/share", async (req) => {
+  }>("/:listId/share", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return listsService.shareList(user.id, req.params.listId, req.body.familyId)
   })
@@ -94,7 +95,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { listId: string }
     Body: ShareListDto
-  }>("/:listId/unshare", async (req) => {
+  }>("/:listId/unshare", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return listsService.unshareList(user.id, req.params.listId, req.body.familyId)
   })
@@ -102,7 +103,7 @@ const listsRoutes: FastifyPluginAsync = async (fastify) => {
   // Reorder lists
   fastify.put<{
     Body: ReorderItemsDto
-  }>("/reorder", async (req) => {
+  }>("/reorder", { schema }, async (req) => {
     const user = getAuthUser(req)
     return listsService.reorderLists(user.id, req.body.orderedIds)
   })

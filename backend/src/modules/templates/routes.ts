@@ -11,6 +11,7 @@ import type {
   ReorderItemsDto,
   BatchDeleteDto
 } from "@plans-tracker/types"
+import { schema, schemaByID } from "./templates.schema"
 
 /**
  * Routes for template management.
@@ -21,7 +22,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // List templates
   fastify.get<{
     Querystring: { familyId?: string }
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     if (req.query.familyId) {
       return templatesService.listForFamilySelect(user.id, req.query.familyId)
@@ -32,7 +33,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Get a template
   fastify.get<{
     Params: { templateId: string }
-  }>("/:templateId", async (req) => {
+  }>("/:templateId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.get(user.id, req.params.templateId)
   })
@@ -40,7 +41,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Create a template
   fastify.post<{
     Body: CreateTemplateDto
-  }>("/", async (req, reply) => {
+  }>("/", { schema }, async (req, reply) => {
     const user = getAuthUser(req)
     const template = await templatesService.create(user.id, req.body)
     return reply.status(201).send(template)
@@ -50,7 +51,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { templateId: string }
     Body: UpdateTemplateDto
-  }>("/:templateId", async (req) => {
+  }>("/:templateId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.update(user.id, req.params.templateId, req.body)
   })
@@ -58,7 +59,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a template
   fastify.delete<{
     Params: { templateId: string }
-  }>("/:templateId", async (req) => {
+  }>("/:templateId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.remove(user.id, req.params.templateId)
   })
@@ -66,7 +67,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete multiple templates
   fastify.delete<{
     Body: BatchDeleteDto
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.removeMany(user.id, req.body.ids)
   })
@@ -75,7 +76,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { templateId: string }
     Body: AddTemplateItemsDto
-  }>("/:templateId/items", async (req) => {
+  }>("/:templateId/items", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.addItems(user.id, req.params.templateId, req.body.productIds)
   })
@@ -84,7 +85,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { templateId: string; itemId: string }
     Body: UpdateTemplateItemDto
-  }>("/:templateId/items/:itemId", async (req) => {
+  }>("/:templateId/items/:itemId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.updateItem(user.id, req.params.templateId, req.params.itemId, req.body)
   })
@@ -92,7 +93,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Remove template item
   fastify.delete<{
     Params: { templateId: string; itemId: string }
-  }>("/:templateId/items/:itemId", async (req) => {
+  }>("/:templateId/items/:itemId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.removeItem(user.id, req.params.templateId, req.params.itemId)
   })
@@ -101,7 +102,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { templateId: string }
     Body: ShareTemplateDto
-  }>("/:templateId/share", async (req) => {
+  }>("/:templateId/share", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.share(user.id, req.params.templateId, req.body.familyId)
   })
@@ -110,7 +111,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { templateId: string }
     Body: ShareTemplateDto
-  }>("/:templateId/unshare", async (req) => {
+  }>("/:templateId/unshare", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.unshare(user.id, req.params.templateId, req.body.familyId)
   })
@@ -118,7 +119,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Batch set template sharing
   fastify.post<{
     Body: SetTemplateSharingDto
-  }>("/sharing", async (req) => {
+  }>("/sharing", { schema }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.setSharing(user.id, req.body.familyId, req.body.templateIds)
   })
@@ -126,7 +127,7 @@ const templatesRoutes: FastifyPluginAsync = async (fastify) => {
   // Reorder templates
   fastify.put<{
     Body: ReorderItemsDto
-  }>("/reorder", async (req) => {
+  }>("/reorder", { schema }, async (req) => {
     const user = getAuthUser(req)
     return templatesService.reorder(user.id, req.body.orderedIds)
   })
