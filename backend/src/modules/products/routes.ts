@@ -9,6 +9,7 @@ import type {
   ReorderItemsDto,
   BatchDeleteDto
 } from "@plans-tracker/types"
+import { schema, schemaByID } from "./products.schema"
 
 /**
  * Routes for product management.
@@ -19,7 +20,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   // List products
   fastify.get<{
     Querystring: { familyId?: string }
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     if (req.query.familyId) {
       return productsService.listForFamilySelect(user.id, req.query.familyId)
@@ -30,7 +31,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   // Create a product
   fastify.post<{
     Body: CreateProductDto
-  }>("/", async (req, reply) => {
+  }>("/", { schema }, async (req, reply) => {
     const user = getAuthUser(req)
     const product = await productsService.create(user.id, req.body)
     return reply.status(201).send(product)
@@ -40,7 +41,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.patch<{
     Params: { productId: string }
     Body: UpdateProductDto
-  }>("/:productId", async (req) => {
+  }>("/:productId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return productsService.update(user.id, req.params.productId, req.body)
   })
@@ -48,7 +49,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete a product
   fastify.delete<{
     Params: { productId: string }
-  }>("/:productId", async (req) => {
+  }>("/:productId", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return productsService.remove(user.id, req.params.productId)
   })
@@ -56,7 +57,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   // Delete multiple products
   fastify.delete<{
     Body: BatchDeleteDto
-  }>("/", async (req) => {
+  }>("/", { schema }, async (req) => {
     const user = getAuthUser(req)
     return productsService.removeMany(user.id, req.body.ids)
   })
@@ -65,7 +66,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { productId: string }
     Body: ShareProductDto
-  }>("/:productId/share", async (req) => {
+  }>("/:productId/share", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return productsService.share(user.id, req.params.productId, req.body.familyId)
   })
@@ -74,7 +75,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post<{
     Params: { productId: string }
     Body: ShareProductDto
-  }>("/:productId/unshare", async (req) => {
+  }>("/:productId/unshare", { schema: schemaByID }, async (req) => {
     const user = getAuthUser(req)
     return productsService.unshare(user.id, req.params.productId, req.body.familyId)
   })
@@ -82,7 +83,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   // Batch set product sharing
   fastify.post<{
     Body: SetProductSharingDto
-  }>("/sharing", async (req) => {
+  }>("/sharing", { schema }, async (req) => {
     const user = getAuthUser(req)
     return productsService.setSharing(user.id, req.body.familyId, req.body.productIds)
   })
@@ -90,7 +91,7 @@ const productsRoutes: FastifyPluginAsync = async (fastify) => {
   // Reorder products
   fastify.put<{
     Body: ReorderItemsDto
-  }>("/reorder", async (req) => {
+  }>("/reorder", { schema }, async (req) => {
     const user = getAuthUser(req)
     return productsService.reorder(user.id, req.body.orderedIds)
   })
